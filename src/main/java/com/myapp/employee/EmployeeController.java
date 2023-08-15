@@ -114,6 +114,7 @@ public class EmployeeController {
 		String url = "http://localhost:8081/cars/getCar/";
 		ResponseEntity<Car> response = rest.exchange(url+id,HttpMethod.GET,null,Car.class);
 		Car call = response.getBody();
+		System.out.println(call);
 		return call;
 		
 	}
@@ -121,6 +122,10 @@ public class EmployeeController {
 	public String updateName() {
 		return empSer.updateName();
 	}
+	
+	
+	
+	
 	
 	
 	
