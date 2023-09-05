@@ -2,6 +2,8 @@ package com.myapp.employee;
 
 import java.util.List;
 
+import org.apache.log4j.Logger;
+import org.apache.log4j.PropertyConfigurator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpMethod;
@@ -19,6 +21,8 @@ import org.springframework.web.client.RestTemplate;
 @RestController
 @RequestMapping(value = "/employee")
 public class EmployeeController {
+	
+	static Logger log = Logger.getLogger(EmployeeController.class);
 	@Autowired
 	EmployeeService empSer;
 
@@ -40,6 +44,9 @@ public class EmployeeController {
 
 	@GetMapping(value = "/getall")
 	public List<Employee> getAllEmp() {
+		PropertyConfigurator.configure("log.properties");
+		log.info(empSer.getAllEmp());
+		
 		return empSer.getAllEmp();
 	}
 
@@ -115,6 +122,7 @@ public class EmployeeController {
 		ResponseEntity<Car> response = rest.exchange(url+id,HttpMethod.GET,null,Car.class);
 		Car call = response.getBody();
 		System.out.println(call);
+		System.out.println("kgdskfrgrhdsjlkjfkds");
 		return call;
 		
 	}
